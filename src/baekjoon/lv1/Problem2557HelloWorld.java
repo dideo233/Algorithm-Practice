@@ -1,4 +1,4 @@
-package Java.baekjoon.lv1;
+package baekjoon.lv1;
 
 /**
  * 백준 단계별 문제풀이 2557 HelloWorld
