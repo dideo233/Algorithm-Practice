@@ -10,6 +10,6 @@ public class Problem1000 {
 
         int sum = num1 + num2;
         System.out.println(sum);
-
+        sc.close();
     }
 }

@@ -10,6 +10,6 @@ public class Problem1008 {
 
         double result = num1 / num2;
         System.out.println(result);
-
+        sc.close();
     }
 }

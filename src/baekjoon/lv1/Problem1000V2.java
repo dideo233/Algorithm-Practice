@@ -16,6 +16,7 @@ public class Problem1000V2 {
 
         int sum = num1 + num2;
         System.out.println(sum);
+        br.close();
 
         // InputStreamReader 사용; Scanner보다 저수준으로 처리
         // Scanner의 경우 토큰 처리, 자료형 변환 제공 등 유연성 있음

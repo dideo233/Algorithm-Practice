@@ -11,5 +11,6 @@ public class Problem1001 {
 
         int result = num1 - num2;
         System.out.println(result);
+        sc.close();
     }
 }

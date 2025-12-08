@@ -18,5 +18,6 @@ public class Problem2588 {
         System.out.println(ten);
         System.out.println(hundred);
         System.out.println(result);
+        sc.close();
     }
 }
