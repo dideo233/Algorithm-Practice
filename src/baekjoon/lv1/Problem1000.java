@@ -2,11 +2,6 @@ package baekjoon.lv1;
 
 import java.util.Scanner;
 
-/**
- * 백준 단계별 문제풀이 1000
- * 문제: 1+2 = 3 출력
- * 풀이: Scanner 사용, + 연산자 사용
- */
 public class Problem1000 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
