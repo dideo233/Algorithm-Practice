@@ -94,6 +94,7 @@ public class loops {
 
         // 향상된 for 문 (for-each)
         // 배열이나 컬렉션의 모든 요소를 처음부터 끝까지 순회할 때 사용.
+        // 단, for문 내 증가하는 index 값 필요한 경우 사용 불가
         System.out.println("\n향상된 for 문 (for-each):");
         int[] numbers = {10, 20, 30};
         for (int number : numbers) {
