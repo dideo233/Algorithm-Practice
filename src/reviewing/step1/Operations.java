@@ -104,8 +104,8 @@ public class Operations {
         System.out.println("주소 비교 (==): " + (strLiteral1 == strObject));        // false
         System.out.println("내용 비교 (.equals()): " + strLiteral1.equals(strObject)); // true
 
-        /**
-         [정리] 문자열 리터럴과 String Constant Pool의 동작 원리
+        /*
+         문자열 리터럴과 String Constant Pool의 동작 원리
 
          1.  String은 불변(Immutable) 객체이며 사용 빈도가 매우 높기 때문에,
          JVM은 메모리 효율화를 위해 문자열 리터럴을 'String Constant Pool'이라는 특별한 공간에서 관리한다.
