@@ -14,5 +14,6 @@ public class Problem2753 {
         } else {
             System.out.println(0);
         }
+        br.close();
     }
 }
