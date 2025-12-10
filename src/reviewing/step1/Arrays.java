@@ -2,6 +2,11 @@ package reviewing.step1;
 
 import java.util.Scanner;
 
+/**
+ * Java의 배열 정리
+ * - 1차원, 2차원 배열의 개념과 그 활용
+ * - 배열 관련 예제
+ */
 public class Arrays {
 
     private static final Scanner sc = new Scanner(System.in);
