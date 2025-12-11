@@ -18,9 +18,6 @@ public class ClassEx {
      *    - 객체 (Object): 설계도를 통해 메모리(Heap)에 실제로 생성된 '실체' (붕어빵).
      *    - 인스턴스 (Instance): 특정 클래스 소속임을 강조할 때 쓰는 말. (객체와 거의 같은 의미)
      *
-     * 3. 변수의 종류와 메모리
-     *    - 인스턴스 변수: 객체마다 다르게 가지는 값 (이름, 나이). 'Heap 영역'에 생성.
-     *    - 클래스(static) 변수: 모든 객체가 공유하는 값. 'Method 영역'에 생성.
      */
 
     public static void main(String[] args) {
