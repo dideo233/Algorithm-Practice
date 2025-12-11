@@ -1,4 +1,4 @@
-package reviewing.step2.sec03OOP;
+package reviewing.step2.sec03oop;
 
 public class ProceduralEx {
 
