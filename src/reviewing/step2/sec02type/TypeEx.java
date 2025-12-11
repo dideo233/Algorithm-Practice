@@ -96,14 +96,4 @@ public class TypeEx {
     public static void changeReference(Data data) {
         data.value = 20;
     }
-
-    /*
-     * [기타] 변수의 종류와 메모리
-     * - 지역 변수(Local Variable): 메서드(블록) 내부에서 선언. 스택(Stack) 영역에 생성. 반드시 직접 초기화해야 함.
-     * - 인스턴스 변수(Instance Variable): 클래스에 선언 (static 없음). 힙(Heap) 영역에 생성. 객체가 생성될 때마다 별도 공간 할당.
-     * - 클래스 변수(Class Variable): 클래스에 선언 (static 있음). 메서드(Method) 영역에 생성. 모든 객체가 공유.
-     *
-     * [기타] 가비지 컬렉션 (Garbage Collection, GC)
-     * - 힙(Heap) 영역에서 더 이상 아무도 참조하지 않는 객체(쓰레기)를 찾아내어 자동으로 메모리에서 제거하는 기능.
-     */
 }
