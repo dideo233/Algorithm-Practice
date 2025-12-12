@@ -1,7 +1,7 @@
-package reviewing.step2.sec05.accessmodifier.b;
+package reviewing.step2.sec05.accessmodifier.subpackage;
 
 // 다른 패키지의 클래스를 쓰려면 import 필수
-import reviewing.step2.sec05.accessmodifier.a.AccessData;
+import reviewing.step2.sec05.accessmodifier.mainpackage.AccessData;
 
 public class AccessOuterEx {
     public static void main(String[] args) {

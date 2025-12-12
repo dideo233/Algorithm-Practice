@@ -1,4 +1,4 @@
-package reviewing.step2.sec05.accessmodifier.ex;
+package reviewing.step2.sec05.accessmodifier.example;
 
 public class ShoppingCart {
     private ShoppingItem[] items = new ShoppingItem[10];

@@ -1,4 +1,4 @@
-package reviewing.step2.sec05.accessmodifier.a;
+package reviewing.step2.sec05.accessmodifier.mainpackage;
 
 public class AccessData {
     public int publicField;      // 누구나

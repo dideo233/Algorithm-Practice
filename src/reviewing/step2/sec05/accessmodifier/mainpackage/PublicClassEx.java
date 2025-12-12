@@ -1,4 +1,4 @@
-package reviewing.step2.sec05.accessmodifier.a;
+package reviewing.step2.sec05.accessmodifier.mainpackage;
 
 // 파일명(PublicClassInnerEx)과 동일한 public 클래스
 public class PublicClassEx {
