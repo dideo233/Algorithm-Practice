@@ -1,6 +1,4 @@
-package reviewing.step2.sec05.accessmodifier;
-
-import reviewing.step2.sec05.accessmodifier.a.AccessData;
+package reviewing.step2.sec05accessmodifier;
 
 public class SpeakerEx {
     public static void main (String[] args) {

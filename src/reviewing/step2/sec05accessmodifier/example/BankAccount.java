@@ -1,4 +1,4 @@
-package reviewing.step2.sec05.accessmodifier.ex;
+package reviewing.step2.sec05accessmodifier.example;
 
 public class BankAccount {
     private int balance;

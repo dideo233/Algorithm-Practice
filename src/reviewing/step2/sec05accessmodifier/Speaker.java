@@ -1,4 +1,4 @@
-package reviewing.step2.sec05.accessmodifier;
+package reviewing.step2.sec05accessmodifier;
 
 public class Speaker {
     private int volume;
