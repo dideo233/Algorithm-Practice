@@ -1,4 +1,4 @@
-package reviewing.step2.sec03oop;
+package reviewing.step2.sec03encapsulation;
 
 public class MusicPlayer {
     int volume;
