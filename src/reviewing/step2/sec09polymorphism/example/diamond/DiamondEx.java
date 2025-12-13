@@ -1,25 +1,34 @@
 package reviewing.step2.sec09polymorphism.example.diamond;
 
+/**
+ * 다중 구현과 다이아몬드 문제 (Diamond Problem)
+ */
 public class DiamondEx {
 
     /**
      * [상속 vs 구현]
-     * 다중 상속은 안 되는데 다중 구현은 되는 까닭은?
-     *   - 다중 상속 시 두 부모 클래스의 메서드명 중복 시 무엇을 상속 받는지 애매한 문제 발생
-     *   - 그러나 모든 메서드가 추상 메서드로 된 인터페이스의 경우, 기능을 자식에서 구현하여야 함!
-     *   (상위 인터페이스 둘에 같은 이름 메서드 있어도, 오버라이딩(우선권!)에 의해 자식에서 구현된 메서드가 호출될 뿐이다! 즉 다이아몬드 문제 x)
-     *   - 다이아몬드 문제의 핵심은 어떤 부모를 골라야 하나? 라는 모호성 자체가 없다
+     * 1. 다중 상속이 금지된 이유 (클래스)
+     *   - 부모 A와 부모 B가 똑같은 `method()`를 가지고 있을 때,
+     *     자식이 `super.method()`를 호출하면 누구 걸 실행해야 할지 모름. (모호성 발생)
+     *   - 이를 '다이아몬드 문제'라고 함.
+     *
+     * 2. 다중 구현이 허용되는 이유 (인터페이스)
+     *   - 인터페이스 A와 B가 똑같은 `method()`를 가지고 있어도 문제없음. 실행 로직은 오직 자식에서만 구현됨!
+     *     자식에서 구현되었다면, 오버라이딩에 의해 자식에서 구현된 메서드가 호출될 뿐이다.
+     *   - 즉 다이아몬드 문제의 핵심인 "어떤 부모를 골라야 하나?"라는 모호성 자체가 없다.
      */
+
     public static void main(String[] args) {
         InterfaceA a = new Child();
         a.methodA();
-        a.methodCommon();
-        //변수 a는 InterfaceA 타입 > 해당 타입의 methodCommon() 탐색 > 오버라이딩 되어 있어 Child의 methodCommon 호출
+        a.methodCommon(); // InterfaceA의 methodCommon() 호출 -> 오버라이딩된 Child의 메서드 실행
 
         InterfaceB b = new Child();
         b.methodB();
-        b.methodCommon();
-        //변수 b는 InterfaceB 타입 > 해당 타입의 methodCommon() 탐색 > 오버라이딩 되어 있어 Child의 methodCommon 호출
+        b.methodCommon(); // InterfaceB의 methodCommon() 호출 -> 오버라이딩된 Child의 메서드 실행
+
+        // [결론]
+        // 부모 타입(A, B)이 무엇이든, 실제 실행되는 건 유일하게 구현된 Child의 메서드다.
 
     }
 }
