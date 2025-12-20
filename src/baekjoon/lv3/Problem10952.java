@@ -18,13 +18,12 @@ public class Problem10952 {
             StringTokenizer st =  new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            int sum = a + b;
 
             if (a == 0 && b == 0) {
                 break;
             }
 
-            sb.append(sum).append("\n");
+            sb.append(a + b).append("\n");
         }
 
         System.out.println(sb);

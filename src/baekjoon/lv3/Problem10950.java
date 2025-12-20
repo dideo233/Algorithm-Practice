@@ -11,7 +11,6 @@ public class Problem10950 {
 
         for (int i = 0; i < t; i++) {
             String[] str = br.readLine().split(" ");
-
             int a = Integer.parseInt(str[0]);
             int b = Integer.parseInt(str[1]);
             System.out.println(a + b);

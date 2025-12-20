@@ -27,11 +27,10 @@ public class Problem11022 {
             StringTokenizer st = new StringTokenizer(str);
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            int sum = a + b;
 
             sb.append("Case #").append(i).append(": ")
                     .append(a).append(" + ").append(b)
-                    .append(" = ").append(sum).append("\n");
+                    .append(" = ").append(a + b).append("\n");
         }
 
         System.out.print(sb);
