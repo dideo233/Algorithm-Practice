@@ -35,8 +35,8 @@ public class Problem10810 {
             }
         }
 
-        for(int irr : values){
-            System.out.print(irr + " ");
+        for(int value : values){
+            System.out.print(value + " ");
         }
     }
 }
