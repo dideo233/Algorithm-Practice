@@ -18,6 +18,12 @@ import java.util.StringTokenizer;
  * - boolean 배열을 사용해 각 나머지의 등장 여부를 체크
  * - true의 개수를 세어 서로 다른 나머지 개수를 계산
  * - 나머지 값이 인덱스가 된다. 해당 인덱스에 체크해주면 됨. 중복의 경우 이미 체크된 거니 OK
+ *
+ * [해결 전략2: 비교 기반 중복 제거]
+ * - 나머지를 크기 10의 배열에 저장하고, 각 값에 대해 뒤쪽 원소들과 비교 (이중 for문; O(n^2))
+ * - 같은 값이 하나라도 있으면 이후는 중복으로 판단하여 카운트하지 않음
+ * - 끝까지 같은 값이 없을 경우 해당 나머지를 대표로 1회 카운트
+ *   (해당 값이 처음 등장한 경우이므로 서로 다른 나머지로 판단)
  */
 public class Problem3052 {
     public static void main(String[] args) throws IOException {
@@ -36,5 +42,30 @@ public class Problem3052 {
         }
 
         System.out.println(count);
+
+        /*
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int[] remains =  new int[10];
+
+        for (int i = 0; i < 10; i++) {
+            remains[i] = Integer.parseInt(br.readLine()) % 42;
+        }
+
+        int count = 0;
+        for (int i = 0; i < 10; i++) {
+            boolean duplicateChk = false;
+
+            // j = i로 하면 항상 자기 자신과 비교하는 케이스 발생
+            for (int j = i + 1; j < 10; j++) {
+                if (remains[i] == remains[j]) {
+                    duplicateChk = true;
+                    break;
+                }
+            }
+
+            if(!duplicateChk) count++; //유일하면 카운트
+        }
+        System.out.println(count);
+        */
     }
 }
