@@ -23,7 +23,6 @@ import java.util.StringTokenizer;
  * - 입력은 1-based, 배열은 0-based이므로 인덱스 변환에 주의
  * - 루프 조건과 상태 변경을 섞지 않도록 구현
  */
-
 public class Problem10811 {
     public static void main(String[] args) throws IOException {
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
@@ -38,13 +37,24 @@ public class Problem10811 {
 
         for (int i = 0; i < m; i++){
             st = new StringTokenizer(br.readLine());
-            int a = Integer.parseInt(st.nextToken());
-            int b = Integer.parseInt(st.nextToken());
+            int a = Integer.parseInt(st.nextToken())-1;
+            int b = Integer.parseInt(st.nextToken())-1;
 
-            for (int j = a-1; j < b; j++){
-                int temp = basket[j];
-                basket[j] = basket[b-1];
-                basket[b-1] = temp;
+            /**
+             * [구간 뒤집기(swap) 구조]
+             *
+             * left  → → →
+             * basket[ ? ? ? ? ? ]
+             * ← ← ←  right
+             *
+             * - left < right 동안만 swap 수행
+             * - swap 후 left++, right-- 로 포인터를 안쪽으로 이동
+             */
+            while(a < b) {
+                int temp = basket[a];
+                basket[a] = basket[b];
+                basket[b] = temp;
+                a++;
                 b--;
             }
         }
