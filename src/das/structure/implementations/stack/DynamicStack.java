@@ -1,4 +1,4 @@
-package das.structure.implementations;
+package das.structure.implementations.stack;
 
 import java.util.ArrayList;
 
