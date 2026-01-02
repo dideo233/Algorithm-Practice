@@ -6,8 +6,7 @@ import java.io.InputStreamReader;
 
 /**
  * [문제 맥락]
- * - 문자열 S와 정수 i가 주어질 때
- * - 문자열 S의 i번째 문자를 출력하는 문제
+ * - 문자열 S와 정수 i가 주어질 때, 문자열 S의 i번째 문자를 출력한다
  */
 public class Problem27866 {
     public static void main(String[] args) throws IOException {

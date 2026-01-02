@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 /**
- * [문제 요약]
+ * [문제 맥락]
  * - 1번부터 N번까지 번호가 적힌 바구니가 순서대로 놓여 있음
  * - M번에 걸쳐, 지정된 구간 [i, j]의 바구니 순서를 역순으로 뒤집음
  * - 모든 연산을 순서대로 수행한 뒤 최종 바구니 상태를 출력
