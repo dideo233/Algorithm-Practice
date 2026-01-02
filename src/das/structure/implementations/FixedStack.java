@@ -36,6 +36,9 @@ public class FixedStack {
     }
 
     public Object top(){
+        if (top == -1) {
+            return null;
+        }
         return items[top];
     }
 
