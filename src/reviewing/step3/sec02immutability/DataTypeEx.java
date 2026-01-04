@@ -1,90 +1,85 @@
 package reviewing.step3.sec02immutability;
 
-
 /**
- * [공유 참조와 사이드이펙트]
- * 사이드이펙트 : 어떤 계산이 주된 작업 외에 의도하지 않은 부수 효과를 일으키는 것.
- * -> 기본형은 값을 복사하여 대입하니 발생하지 않는 반면, 참조형은 참조값을 복사하여 대입하니 같은 객체가 공유될 수 있다. (공유 참조!)
+ * [공유 참조와 불변 객체(Immutable Object)]
+ *
+ * 1. 공유 참조와 사이드 이펙트
+ *    - 기본형(Primitive)은 값을 복사하므로 서로 독립적이다.
+ *    - 참조형(Reference)은 메모리 주소를 복사하므로, 하나의 객체를 여러 변수가 공유한다.(Shared Reference)
+ *    - 공유된 객체의 값을 변경하면, 이를 참조하는 모든 변수에 영향을 미친다(Side Effect).
+ *
+ * 2. 해결책: 불변 객체(Immutable Object)
+ *    - 객체를 공유하는 것 자체는 막을 수 없다. (메모리 효율상 필요함)
+ *    - 대신, 객체의 내부 상태(값)를 아예 수정할 수 없게 막아버린다. (`final` 선언, `Setter` 제거)
+ *    - 값을 바꾸고 싶으면 수정이 아니라, 새로운 객체를 생성해서 할당해야 한다.
  */
 public class DataTypeEx {
     public static void main(String[] args) {
-        // 기본형 : 하나의 값을 여러 변수에서 공유하지 않음 (다른 메모리 공간)
+        /**
+         * [1. 기본형(Primitive Type)의 특징]
+         * - 값을 그대로 복사하여 대입한다.
+         * - 각 변수는 서로 다른 메모리 공간을 가지므로 영향을 주지 않는다.
+         */
+        System.out.println("--- 1. 기본형: 값 복사 (사이드 이펙트 X) ---");
         int primitive1 = 10;
-        int primitive2 = primitive1; // 값을 복사하여 대입
-        System.out.println("primitive1 = " + primitive1);
-        System.out.println("primitive2 = " + primitive2);
-
-        primitive2 = 20;
-        System.out.println("20 -> primitive2 ");
-        System.out.println("primitive1 = " + primitive1);
-        System.out.println("primitive2 = " + primitive2);
+        int primitive2 = primitive1; // 값(10)을 복사
+        primitive2 = 20; // primitive2만 변경됨
+        System.out.println("primitive1 = " + primitive1); // 10 (영향 없음)
+        System.out.println("primitive2 = " + primitive2); // 20
 
 
-        // 참조형 : 하나의 객체를 참조값을 통해 여러 변수에서 공유 (
+        /**
+         * [2. 참조형(Reference Type)의 문제점: 공유 참조]
+         * - 객체의 메모리 주소(참조값)를 복사하여 대입한다.
+         * - 두 변수가 하나의 인스턴스를 바라보게 된다.
+         */
+        System.out.println("\n--- 2. 참조형: 공유 참조와 사이드 이펙트 발생 ---");
         Address ref1 = new Address("서울");
-        Address ref2 = ref1; //참조값을 복사하여 대입 (해당 참조값이 가리키는 메모리 공간은 ref1, ref2 동일)
-        System.out.println("\nref1 = " + ref1);
-        System.out.println("ref2 = " + ref2);
+        Address ref2 = ref1; // 참조값 복사
 
+        // [사이드 이펙트 발생]
+        // ref2의 주소를 부산으로 바꿨는데, 의도하지 않은 ref1도 변경
+        // 원인: ref1과 ref2가 '같은 객체'를 보고 있기 때문.
         ref2.setValue("부산");
-        System.out.println("부산 -> ref2");
-        System.out.println("ref1 = " + ref1); //사이드 이펙트, B의 주소값을 변경할 의도였으나 A도 의도치 않게 변경
-        System.out.println("ref2 = " + ref2);
+        System.out.println("ref1 = " + ref1); // 부산 (의도치 않은 변경!)
+        System.out.println("ref2 = " + ref2); // 부산
 
-        // 사이드 이펙트 해결
-        // 문제는 같은 객체의 참조를 공유하니 발생했다. 따라서 공유하지 않도록 서로 다른 객체를 참조하게 하면 해결된다.
+        /**
+         * [3. 개발자의 실수 가능성]
+         * - 사이드 이펙트는 서로 다른 객체를 참조하도록 설계하면 문제는 해결된다.
+         * - 하지만, 개발자가 실수로 `refA = refB` 처럼 공유 참조 코드를 작성하는 것을 문법적으로 막을 방법은 없다.
+         */
+        System.out.println("\n--- 3. 개발자의 실수 시나리오 ---");
         Address ref3 = new Address("서울");
-        Address ref4 = new Address("서울");
-        System.out.println("\nref3 = " + ref3);
-        System.out.println("ref4 = " + ref4);
+        Address ref4 = ref3; // 실수로 공유 참조 생성
 
-        ref4.setValue("부산");
-        System.out.println("부산 -> ref4");
-        System.out.println("ref3 = " + ref3); 
-        System.out.println("ref4 = " + ref4);
+        // 복잡한 로직 안에서 사이드 이펙트가 발생하면 찾기 매우 어렵다.
+        changeAddress(ref3, "부산");
+        System.out.println("ref3 = " + ref3); // 부산 (의도치 않은 변경!)
+        System.out.println("ref4 = " + ref4); // 부산
 
-        // 근본 문제
-        // -> 여러 변수가 하나의 객체를 공유하는 것을 막을 방법은 없다.
-        // 그럼 ref2 = ref1 같은 코드 작성하지 않는다면 사이드 이펙트 문제가 발생하지 않을까?
-        // -> 문법 오류는 아나다! 새 객체를 만들든, 기존 객체를 대입해도 문법상 정상이다
-        // -> 실수가 발생할 수 있다
+        /**
+         * [4. 근본적인 해결책: 불변 객체(Immutable Object)]
+         * - 공유 참조를 막을 수 없다면, '공유된 객체의 값 변경'을 원천 차단한다.
+         * - 객체의 값을 변경할 수 없으므로 사이드 이펙트가 발생할 수 없다.
+         */
+        System.out.println("\n--- 4. 불변 객체 도입 (사이드 이펙트 원천 차단) ---");
+        ImmutableAddress immutableRef1 = new ImmutableAddress("서울");
+        ImmutableAddress immutableRef2 = immutableRef1; // 공유 참조는 여전히 발생
 
-        Address ref5 = new Address("서울");
-        Address ref6 = ref5;
-        System.out.println("\nref5 = " + ref5);
-        System.out.println("ref6 = " + ref6);
+        // [변경 불가]
+        // immutableRef2.setValue("부산"); // 컴파일 에러! 불변 객체는 값 변경 메서드가 없음.
 
-        // 이런 식으로 코드가 점차 복잡해지면 비례적으로 공유 참조를 찾기 어려워진다.
-        // 따라서 단순히 개발자가 조심하는 것만으로는 공유 참조로 인한 사이드이펙트 막기 까다롭다 (문제 발생!)
-        change(ref6, "부산");
-        System.out.println("ref5 = " + ref1);
-        System.out.println("ref6 = " + ref2);
+        // [새로운 객체 생성]
+        // 값을 바꾸고 싶다면, 새로운 객체를 생성하여 변수에 갈아끼워야(재할당) 한다.
+        immutableRef2 = new ImmutableAddress("부산");
+        System.out.println("immutableRef1 = " + immutableRef1); // 서울 (값 유지됨)
+        System.out.println("immutableRef2 = " + immutableRef2); // 부산 (새로운 객체)
 
-        // 문제 고찰
-        // 핵심은 객체를 공유하였기 때문인데, 사실 객체 공유 자체는 문제가 아니다. (메모리 절약과 생성 시간 단축하여 성능상 효율 있기에 장점 있음!)
-        // 근본적으로는 문제 발생은 공유 참조가 아닌 '공유된 객체의 값을 변경'함에 있음
-
-        // 근본 문제의 해결 -> 불변 객체(Immutable Object) 도입. 상태(객체 내부의 값, 필드, 멤버 변수)가 변하지 않는 객체를 말함
-        // 클래스 작성 시 내부 필드를 final로 선언하면 됨 (생성자를 통해서만 값 설정 가능)
-        // -> final이 아니라 쳐도 어떻게든 필드 값을 변경할 수 없게 설계하면 불변 클래스가 됨 (예: private 필드에 setter만 있는 경우 등)
-
-        ImputableAddress imputableRef1 = new ImputableAddress("서울");
-        ImputableAddress imputableRef2 = imputableRef1; //참조값 대입 자체는 정당함
-        System.out.println("\nimputableRef1 = " + imputableRef1);
-        System.out.println("imputableRef2 = " + imputableRef2);
-
-        // imputableRef2.setValue("부산"); // 값을 부산으로 변경해야 함. 불변 객체라 변경 불가!
-        imputableRef2 = new ImputableAddress("부산"); //새 불변 객체 생성
-        System.out.println("imputableRef1 = " + imputableRef1);
-        System.out.println("imputableRef2 = " + imputableRef2);
-
-        // 결론
-        // 공유 참조는 막을 수 없다. 따라서 사이드 이펙트는 발생한다. 
-        // 이를 방지하기 위해 불변 객체라는 제약을 도입하여, 개발자의 실수를 방지하여 사이드 이펙트를 원천 차단한다.
-
+        // 결론: 불변 객체는 값을 수정할 수 없으므로, 공유되어도 안전하다.
     }
 
-    public static void change(Address address, String changeAddress) {
+    public static void changeAddress(Address address, String changeAddress) {
         System.out.println("change address: " + changeAddress);
         address.setValue(changeAddress);
     }
