@@ -26,7 +26,7 @@ package reviewing.step3.sec02immutability;
  *    - 값 변경 방식:
  *      - 내부 값을 수정하는 대신, 변경된 값을 가진 '새로운 객체'를 생성(`new`)하여 반환함.
  */
-public class DataTypeEx {
+public class ImmutableEx {
     public static void main(String[] args) {
         /**
          * [1. 기본형(Primitive Type)의 특징]
