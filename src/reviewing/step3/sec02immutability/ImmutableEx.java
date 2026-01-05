@@ -2,11 +2,10 @@ package reviewing.step3.sec02immutability;
 
 /**
  * [공유 참조와 불변 객체(Immutable Object)]
- *
  * 1. 공유 참조와 사이드 이펙트
  *    - 기본형(Primitive)은 값을 복사하므로 서로 독립적이다.
  *    - 참조형(Reference)은 메모리 주소를 복사하므로, 하나의 객체를 여러 변수가 공유한다.(Shared Reference)
- *      이 상태에서 객체의 값을 변경하면, 이를 참조하는 모든 변수에 영향을 미친다(Side Effect).
+ *      이 상태에서 객체의 값을 변경하면, 이를 참조하는 모든 변수에 의도치 않은 영향을 미친다(Side Effect).
  *
  * 2. 해결책: 불변 객체(Immutable Object)
  *    - 객체를 공유하는 것 자체는 막을 수 없다. (메모리 효율상 필요함)
@@ -40,7 +39,6 @@ public class ImmutableEx {
         System.out.println("primitive1 = " + primitive1); // 10 (영향 없음)
         System.out.println("primitive2 = " + primitive2); // 20
 
-
         /**
          * [2. 참조형(Reference Type)의 문제점: 공유 참조]
          * - 객체의 메모리 주소(참조값)를 복사하여 대입한다.
@@ -73,7 +71,7 @@ public class ImmutableEx {
 
         /**
          * [4. 근본적인 해결책: 불변 객체(Immutable Object)]
-         * - 공유 참조를 막을 수 없다면, '공유된 객체의 값 변경'을 원천 차단한다.
+         * - 공유 참조를 막는 대신, '공유된 객체의 값 변경'을 원천 차단한다.
          * - 객체의 값을 변경할 수 없으므로 사이드 이펙트가 발생할 수 없다.
          */
         System.out.println("\n--- 4. 불변 객체 도입 (사이드 이펙트 원천 차단) ---");
