@@ -5,7 +5,7 @@ package reviewing.step3.sec03string;
  * - String(불변) 클래스는 문자를 더하거나 변경할 때마다 새 객체를 생성해야 함 (성능/메모리 낭비)
  * - StringBuilder(가변) 클래스는 하나의 객체 안에서 원본을 직접 수정하여 빠르고 효율적임 (+ 메서드 체이닝 지원).
  *
- * [결론] 문자열 추가/변경이 잦은 경우(특히 반복문)에는 StringBuilder를 사용하고,
+ * [결론] 문자열 추가/변경이 잦은 경우에는 StringBuilder를 사용하고,
  *       작업이 끝나면 toString()을 통해 String으로 변환한다.
  */
 public class StringMutableEx {
