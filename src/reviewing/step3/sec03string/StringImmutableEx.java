@@ -20,12 +20,5 @@ public class StringImmutableEx {
         // 2. 값을 변경하려면 (반환값 수신 필수)
         String str2 = str1.concat(" world");
         System.out.println("str2 = " + str2); // "hello world"
-
-        /**
-         * [참고]
-         * - String의 불변성은 값을 더할 때마다 새 객체가 생성되게 함 (성능/메모리 낭비)
-         * - StringBuilder의 장점: 가변(Mutable)이라 원본을 직접 수정하여 빠르고 효율적임 (+ 메서드 체이닝 지원).
-         * - 결론: 문자열 추가/변경 연산이 많거나, 특히 반복문 안에서는 String 대신 StringBuilder 필수.
-         */
     }
 }
