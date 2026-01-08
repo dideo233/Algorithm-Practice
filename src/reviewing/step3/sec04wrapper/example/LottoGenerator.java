@@ -45,4 +45,35 @@ public class LottoGenerator {
         }
         return true;
     }
+
+    /**
+     * [Bad Practice] 리팩토링 전 코드
+     * - 문제점 1: 중첩 반복문으로 인한 가독성 저하 (들여쓰기 깊음)
+     * - 문제점 2: 흐름 제어를 위한 불필요한 flag 변수(isDuplicate)와 break 사용
+     */
+    @Deprecated
+    public int[] generateBeforeRefactoring() {
+        int[] numbers = new int[6];
+        int count = 0;
+
+        while (count < 6) {
+            int number = random.nextInt(45) + 1;
+
+            // [Bad] 핵심 로직 안에 중복 체크 로직이 섞여 있음
+            boolean isDuplicate = false;
+            for (int i = 0; i < count; i++) {
+                if (numbers[i] == number) {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+
+            // [Bad] 플래그 변수를 확인해야 함
+            if (!isDuplicate) {
+                numbers[count] = number;
+                count++;
+            }
+        }
+        return numbers;
+    }
 }
