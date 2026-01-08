@@ -8,10 +8,9 @@ package reviewing.step3.sec04wrapper;
  *               객체 참조가 필요한 프레임워크, 제네릭도 사용할 수 없음.
  * - null 불가: '값 없음' 상태를 표현할 수 없음.
  *
- * 2. 래퍼 클래스 (Wrapper Class)
+ * 2. 대안: 래퍼 클래스 (Wrapper Class)
  *    - 기본형을 객체로 감싸서(Wrap) 유용한 메서드를 제공하고, null을 다룰 수 있게 함.
  */
-
 public class MyIntegerEx {
 
     public static void main(String[] args) {
