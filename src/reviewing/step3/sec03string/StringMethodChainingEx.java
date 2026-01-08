@@ -43,17 +43,17 @@ public class StringMethodChainingEx {
                 .toString();       // 최종적으로 String 변환
         System.out.println("문자열 결과: " + resultStr);
     }
+}
 
-    static class ValueAdder {
-        private int value;
+class ValueAdder {
+    private int value;
 
-        public ValueAdder add(int addValue) {
-            value += addValue;
-            return this;
-        }
+    public ValueAdder add(int addValue) {
+        value += addValue;
+        return this;
+    }
 
-        public int getValue() {
-            return value;
-        }
+    public int getValue() {
+        return value;
     }
 }
