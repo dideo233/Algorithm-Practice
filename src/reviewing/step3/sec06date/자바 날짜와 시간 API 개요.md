@@ -61,3 +61,53 @@
 ### 기타 부분적인 시간
 - **Year, Month, YearMonth, MonthDay**
 - 년도, 월, 혹은 '2024년 5월'이나 '12월 25일'처럼 특정 날짜 정보의 일부만 필요할 때 사용.
+
+## 4. 날짜와 시간의 핵심 인터페이스
+
+자바의 날짜/시간 라이브러리는 역할에 따라 명확하게 인터페이스가 분리되어 있음. 크게 '시간 자체'를 다루는 것과 '시간의 구성요소(단위, 필드)'를 다루는 것으로 나뉨.
+
+### 1) 날짜와 시간 인터페이스 (Temporal 패밀리)
+날짜와 시간을 표현하고 조작하기 위한 핵심 인터페이스들.
+
+- **TemporalAccessor (Read-Only)**
+    - 날짜와 시간 정보를 읽기(Read) 위한 최소한의 기능을 제공하는 상위 인터페이스.
+    - 단순히 "지금이 몇 시지?"와 같이 정보를 조회하는 역할.
+- **Temporal (Read & Write)**
+    - `TemporalAccessor`의 하위 인터페이스로, 날짜와 시간을 조작(Write)하는 기능이 추가됨.
+    - `plus`, `minus`, `with` 등의 메서드를 통해 시간을 더하거나 빼거나 변경 가능.
+    - **구현체**: `LocalDateTime`, `ZonedDateTime`, `Instant` 등 우리가 주로 쓰는 클래스들.
+- **TemporalAmount**
+    - 시간의 간격(양, Amount)을 나타내는 인터페이스.
+    - `Temporal` 객체에 더하거나 뺄 수 있는 시간의 양을 정의.
+    - **구현체**: `Duration` (시간 기준), `Period` (날짜 기준).
+
+### 2) 시간의 단위와 필드 (Unit vs Field)
+시간을 측정하거나(단위), 특정 부분만 떼어내어(필드) 다루기 위한 개념.
+
+- **TemporalUnit (시간의 단위)**
+    - 시간을 측정하는 기준 단위를 의미. (얼마나 지났나? 무엇을 기준으로 더할까?)
+    - 구현체: 주로 ChronoUnit 열거형(Enum)
+    - 예) `DAYS`(일), `MONTHS`(월), `HOURS`(시간), `SECONDS`(초) 등.
+- **TemporalField (시간의 필드)**
+    - 날짜와 시간을 구성하는 **특정 항목(성분)**을 의미. (전체 날짜 중 '월'만 필요해!)
+    - 구현체: ChronoField 열거형(Enum)
+    - 예) `YEAR`(연도), `MONTH_OF_YEAR`(월), `DAY_OF_MONTH`(일), `HOUR_OF_DAY`(시) 등.
+    - 비교: `2024년 8월 2일`이 있다면, 전체 데이터를 쪼개는 각각의 항목(연, 월, 일)이 바로 Field
+
+### [참고] 시간 관련 개념의 기술적 구분 및 용도
+
+**1. Period/Duration (객체) vs TemporalUnit (기준)**
+- Period, Duration: 시간의 양(Amount)을 저장하는 객체. `plus(TemporalAmount)`와 같이 객체 자체를 넘겨 연산함.
+- TemporalUnit (ChronoUnit): 미리 정의된 연산의 기준(Enum). `plus(10, ChronoUnit.DAYS)`와 같이 정수 값과 함께 넘겨, 해당 정수가 어떤 단위인지 정의함.
+
+**2. TemporalUnit (단위) vs TemporalField (필드)**
+- **TemporalUnit (단위)**: 상대적 연산에 사용.
+    - 시간의 흐름(경과), 차이 계산, 덧셈/뺄셈에 관여.
+    - 예) `DAYS`: 현재에서 1일이 지났다는 '크기'를 의미.
+- **TemporalField (필드)**: 절대적 접근에 사용.
+    - 날짜/시간 객체를 구성하는 특정 성분의 값 추출(Get) 및 수정(With).
+    - 예) `DAY_OF_MONTH`: 이번 달의 며칠째인지 나타내는 '성분'을 의미.
+
+**3. 기술적 동작 차이**
+- Unit (덧셈): 1월 30일에 `1 Unit(Days)`를 더하면 1월 31일 (시간 흐름).
+- Field (수정): 1월 30일의 `Field(Day)`를 1로 수정하면 1월 1일 (성분 교체).
