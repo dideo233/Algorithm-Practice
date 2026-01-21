@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 /**
  * [문제 맥락]
- * - 각 문자열에 대해 첫 글자와 마지막 글자를 추출해 출력하는 문자열 처리 문제
+ * - 각 문자열에 대해 첫 글자와 마지막 글자를 추출해 출력한다
  */
 public class Problem9086 {
     public static void main(String[] args) throws IOException {
