@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
  * - 문자열을 문자 단위로 순회하며 처리하는 기본 패턴
  * - 반복 출력 시 StringBuilder를 사용해 성능 저하를 방지
  */
-public class Problem2075 {
+public class Problem2675 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(br.readLine());
