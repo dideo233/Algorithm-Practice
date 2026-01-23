@@ -7,25 +7,39 @@ import java.util.StringTokenizer;
 
 /**
  * [문제 맥락]
- * - 문자열 S를 입력받은 후, 각 문자를 R번 반복하여 P를 만든 후 출력한다
- * - 즉, 첫 번째 문자를 R번 반복하고, 두 번째 문자를 R번 반복하는 식으로 P를 만들면 된다.
- * - S에는 QR Code "alphanumeric" 문자만 들어있다. (0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\$%*+-./:)
+ * - 문자열 S의 각 문자를 R번 반복하여 새로운 문자열 P를 만든다
+ * - 이 과정을 테스트 케이스 수만큼 반복해 출력한다
+ *
+ * [핵심 포인트]
+ * - 문자열을 문자 단위로 순회하며 처리하는 기본 패턴
+ * - 반복 출력 시 StringBuilder를 사용해 성능 저하를 방지
  */
 public class Problem2075 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
+        int t = Integer.parseInt(br.readLine());
 
         StringBuilder sb = new StringBuilder();
-        StringTokenizer st;
-        for (int i = 0; i < n; i++) {
-            st = new StringTokenizer(br.readLine());
+
+        for (int i = 0; i < t; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
             int r = Integer.parseInt(st.nextToken());
             String s = st.nextToken();
 
             for (int j = 0; j < s.length(); j++) {
-                String p = String.valueOf(s.charAt(j)).repeat(r);
-                sb.append(p);
+                sb.append(String.valueOf(s.charAt(j)).repeat(r));
+
+                /*
+                 * [동일 동작 - 전통적인 반복 방식. java11 이전]
+                 * for (int k = 0; k < r; k++) {
+                 *     sb.append(s.charAt(j));
+                 * }
+                 *
+                 * [주의: 비권장 방식]
+                 * result += s.charAt(j) + "";
+                 * → String은 immutable이므로 반복 시 성능 저하 발생
+                 */
+                
             }
             sb.append("\n");
         }
