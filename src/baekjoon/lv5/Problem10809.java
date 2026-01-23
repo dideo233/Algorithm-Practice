@@ -17,7 +17,7 @@ import java.io.InputStreamReader;
 public class Problem10809 {
 
     public static void main(String[] args) throws IOException {
-        solveWithIndexArray();     // 정답 풀이 (채점용)
+        solveWithIndexArray();  // 정답 풀이 (채점용)
         solveWithBruteForce();  // 다른 풀이 (비교 학습용)
     }
 
