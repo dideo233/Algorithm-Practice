@@ -21,21 +21,42 @@ public class Problem5622 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String s = br.readLine();
+        String input = br.readLine();
 
-        String[] dial = {"ABC","DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ"}; //0~7, (+3 필요)
+        System.out.println(solveWithTripleLoop(input));      // 3중 반복 방식
+        // System.out.println(solveWithRangeComparison(input)); // 범위 비교 방식
+    }
+
+    public static int solveWithTripleLoop(String s) {
+        String[] dial = {"ABC","DEF","GHI","JKL","MNO","PQRS","TUV","WXYZ"}; // 0~7 인덱스 (+3)
         int result = 0;
 
         for (int i = 0; i < s.length(); i++) {
             for (int j = 0; j < dial.length; j++) {
                 for (int k = 0; k < dial[j].length(); k++) {
                     if (s.charAt(i) == dial[j].charAt(k)) {
-                        result += j+3;
+                        result += j + 3;
                     }
                 }
             }
         }
+        return result;
+    }
+    public static int solveWithRangeComparison(String s) {
+        int result = 0;
 
-        System.out.println(result);
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if (c <= 'C') result += 3;
+            else if (c <= 'F') result += 4;
+            else if (c <= 'I') result += 5;
+            else if (c <= 'L') result += 6;
+            else if (c <= 'O') result += 7;
+            else if (c <= 'S') result += 8;
+            else if (c <= 'V') result += 9;
+            else result += 10;
+        }
+        return result;
     }
 }
