@@ -14,12 +14,31 @@ public class Problem10988 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String word = br.readLine();
-        String reversed  = new StringBuilder(word).reverse().toString();
 
-        if (word.equals(reversed)) {
-            System.out.println(1);
-        } else {
-            System.out.println(0);
-        }
+        solveWithReverse(word);       // 방법 1: 문자열 뒤집기
+        solveWithTwoPointers(word);   // 방법 2: 투 포인터
     }
+
+    // StringBuilder로 뒤집어서 비교
+    public static void solveWithReverse(String word) {
+        String reversed = new StringBuilder(word).reverse().toString();
+        System.out.println(word.equals(reversed) ? 1 : 0);
+    }
+
+    // 투 포인터로 양쪽 문자 비교
+    public static void solveWithTwoPointers(String word) {
+        int left = 0;
+        int right = word.length() - 1;
+
+        while (left < right) {
+            if (word.charAt(left) != word.charAt(right)) {
+                System.out.println(0);
+                return;
+            }
+            left++;
+            right--;
+        }
+        System.out.println(1);
+    }
+
 }
